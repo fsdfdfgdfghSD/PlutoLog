@@ -3,6 +3,8 @@ A small oop logging lib made in under 40 lines in [Pluto](https://pluto-lang.org
 
 ![plutolog](plutolog.png)
 
+<hr>
+
 ## Installation
 Copy & paste the [plutolog.pluto](src/plutolog.pluto) file in your directory and require it.
 
