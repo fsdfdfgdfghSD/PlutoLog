@@ -39,7 +39,7 @@ Log:trace("This is a trace message!")
 There are two configurable options for PlutoLog()
 
 ### Colors
-Toggle colors using **true** or **false**. In the above example, we enabled colors.
+Toggle colors using **true** or **false** (Colors are enabled by default). In the above example, we enabled colors.
 
 ### File
 The second parameter is the file where you want to log the messages, if you dont provide one then it wont write to one.
