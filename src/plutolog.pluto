@@ -1,1 +1,38 @@
+pluto_use const
 
+export _VERSION: string = "PlutoLog 0.0.0"
+
+export Modes: table = {
+    ["trace"] = "\27[34m",
+    ["debug"] = "\27[36m",
+    ["info"] = "\27[32m",
+    ["warn"] = "\27[33m",
+    ["error"] = "\27[31m",
+    ["fatal"] = "\27[35m"
+}
+
+export class PlutoLog
+    function __construct(private Color: bool = true, private File: ?string)
+        self.Color = Color
+        self.File = File
+    end
+ 
+    function init()
+        for Mode, Color in Modes do
+            self[Mode] = function(...Args)
+                const Message: string = table.concat(Args, "\t", 2)
+                const Info = debug.getinfo(2, "Sl")
+                const FormattedInfo = Info.short_src..":"..Info.currentline
+
+                print(string.format("%s[%-6s%s]%s %s: %s", self.Color and Color or "", Mode:upper(), os.date("%H:%M:%S"), self.Color and "\27[0m" or "", FormattedInfo, Message))
+
+                if self.File then
+                    const File: userdata = assert(io.open(self.File, "a"))
+
+                    File:write(string.format("[%-6s%s] %s: %s\n", Mode:upper(), os.date(), FormattedInfo, Message))
+                    File:close()
+                end
+            end
+        end
+    end
+end
