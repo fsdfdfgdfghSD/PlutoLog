@@ -1,5 +1,5 @@
 # PlutoLog
-A small oop logging lib made in under 40 lines in Pluto
+A small oop logging lib made in under 40 lines in [Pluto](https://pluto-lang.org/)
 
 ![plutolog](plutolog.png)
 
