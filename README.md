@@ -56,3 +56,7 @@ Log:init()
 
 Log:print("This is a custom log message.")
 ```
+
+<hr>
+
+`Inspired from: https://github.com/rxi/log.lua/`
