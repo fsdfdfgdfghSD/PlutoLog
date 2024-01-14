@@ -1,0 +1,8 @@
+pluto_use const
+
+const plutolog = require("src/plutolog")
+
+const Log = new plutolog.PlutoLog(_, "output.log", "a", "b")
+Log:init()
+
+Log:trace("Hello World!")

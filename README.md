@@ -36,13 +36,19 @@ Log:init()
 Log:trace("This is a trace message!")
 ```
 
-There are two configurable options for PlutoLog()
+There are four configurable options for PlutoLog()
 
 ### Colors
 Toggle colors using **true** or **false** (Colors are enabled by default). In the above example, we enabled colors.
 
 ### File
 The second parameter is the file where you want to log the messages, if you dont provide one then it wont write to one.
+
+### Print formatting
+You can use a custom format for the printing, the default one is "%s[%-6s%s]%s %s: %s".
+
+### File formatting
+You can also use a custom format for the writting-to-file, the default one is "[%-6s%s] %s: %s\n".
 
 ## Customizing
 You can create, modify, remove log levels because the logic is in the **Modes** table which is exported.
