@@ -1,5 +1,5 @@
 # PlutoLog
-A small oop logging lib made in under 40 lines in [Pluto](https://pluto-lang.org/)
+A small oop logging lib made in 33 lines in [Pluto](https://pluto-lang.org/)
 
 ![plutolog](plutolog.png)
 
@@ -25,13 +25,12 @@ PlutoLog supports the following log levels:
 The arguments are separated by tabs.
 
 ## Usage
-PlutoLog should be always initialized if you want to be able to use the above features.
+You will need to require and config the class.
 
 ```lua
 local plutolog <const> = require("src/plutolog")
 
 local Log = new plutolog.PlutoLog(true)
-Log:init()
 
 Log:trace("This is a trace message!")
 ```
@@ -58,11 +57,6 @@ local plutolog <const> = require("src/plutolog")
 plutolog.Modes["print"] = "\27[0m"
 
 local Log = new plutolog.PlutoLog(true)
-Log:init()
 
 Log:print("This is a custom log message.")
 ```
-
-<hr>
-
-`Inspired from: https://github.com/rxi/log.lua/`

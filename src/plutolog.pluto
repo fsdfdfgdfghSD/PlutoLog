@@ -1,6 +1,6 @@
 pluto_use const
 
-export _VERSION: string = "PlutoLog 0.1.0"
+export _VERSION: string = "PlutoLog 0.1.1"
 
 export Modes: table = {
     ["trace"] = "\27[34m",
@@ -12,22 +12,20 @@ export Modes: table = {
 }
 
 export class PlutoLog
-    function __construct(private Color: bool = true, private File: ?string, private print_format: string = "%s[%-6s%s]%s %s: %s", private file_format: string = "[%-6s%s] %s: %s\n") end
- 
-    function init()
-        for Mode, Color in Modes do
+    function __construct(private Color: bool = true, private File: ?string, private print_format: string = "%s[%-6s%s]%s %s: %s", private file_format: string = "[%-6s%s] %s: %s\n")
+        for Mode, AsciiColor in Modes do
             self[Mode] = function(...Args)
                 const Message: string = table.concat(Args, "\t", 2)
                 const Info = debug.getinfo(2, "Sl")
                 const FormattedInfo = Info.short_src..":"..Info.currentline
 
-                print(string.format(self.print_format, self.Color and Color or "", Mode:upper(), os.date("%H:%M:%S"), self.Color and "\27[0m" or "", FormattedInfo, Message))
+                print(string.format(self.print_format, self.Color and AsciiColor or "", Mode:upper(), os.date("%H:%M:%S"), self.Color and "\27[0m" or "", FormattedInfo, Message))
 
                 if self.File then
-                    const File: userdata = assert(io.open(self.File, "a"))
+                    const OutputFile: userdata = assert(io.open(self.File, "a"))
 
-                    File:write(string.format(self.file_format, Mode:upper(), os.date(), FormattedInfo, Message))
-                    File:close()
+                    OutputFile:write(string.format(self.file_format, Mode:upper(), os.date(), FormattedInfo, Message))
+                    OutputFile:close()
                 end
             end
         end
